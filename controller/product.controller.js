@@ -36,7 +36,7 @@ class ProductController {
 
     getProductByUserId(request, response) {
         ProductModel
-            .findOne({ user_id : request.params.id})
+            .find({ user_id : request.params.user_id})
             .then(result => {
                 response.status(200).json({
                     success: true,

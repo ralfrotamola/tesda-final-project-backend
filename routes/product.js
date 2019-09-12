@@ -9,7 +9,7 @@ const productController = new ProductController();
 
 router.get("/getproducts", productController.getProducts);
 router.get("/getproductbyid/:id", productController.getProductById);
-// router.get("/getproductbyuserid/:userid", productController);
+router.get("/getproductbyuserid/:user_id", productController.getProductByUserId);
 router.post("/createproduct", 
             [check('img_path').trim().not().isEmpty().isString().withMessage("invalid img_path"),
             check('name').trim().not().isEmpty().withMessage("invalid product name").isString(),

@@ -6,7 +6,6 @@ exports.createProduct = (request, response, next) => {
     if (!errors.isEmpty()) {
         return response.status(422).json({ success: false, message: errors.array()});
     }
-    // console.log(errors);
     next();
 }
 
@@ -16,6 +15,5 @@ exports.updateProduct = (request, response, next) => {
     if (!errors.isEmpty()) {
         return response.status(422).json({ success: false, message: errors.array()});
     }
-    // console.log(errors);
     next();
 }
