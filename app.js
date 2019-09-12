@@ -22,6 +22,7 @@ mongoose
     .catch(err => console.log(err));
 
 // Routes
+app.use("/", productRoute);
 app.use('/product', productRoute);
 app.use('/user', userRoute);
 
