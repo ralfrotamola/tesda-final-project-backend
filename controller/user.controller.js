@@ -30,6 +30,41 @@ class UserController {
                 })
             });
     }
+
+    login(request, response) {
+        UserModel.findOne({
+            username: request.body.username
+        })
+        .select('_id username password')
+        .then(result => {
+            if (result === null) {
+                response.status(400).json({
+                    success: false,
+                    message: 'Invalid Username or Password'
+                })
+            } else {
+                userService.comparePassword(result, request.body.password)
+                .then(res => {
+                    response.status(200).json({
+                        success: true,
+                        user: res                        
+                    })
+                })
+                .catch( error => {
+                    response.status(400).json({
+                        success: false,
+                        message: error
+                    })
+                });
+            }
+
+        }).catch( error => {
+            response.status(400).json({
+                success: false,
+                message: error.message
+            })
+        });
+    }
 }
 
 module.exports = UserController;

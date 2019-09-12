@@ -13,5 +13,10 @@ router.post("/register",
             userValidator.registration, 
             userController.register);
 
+router.post("/login",
+            [check('username').trim().not().isEmpty().isLength({min: 5}).isAlphanumeric(),
+            check('password').trim().not().isEmpty().isLength({min: 5})],
+            userValidator.login, userController.login)
+
             
 module.exports = router;
