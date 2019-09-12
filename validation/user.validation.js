@@ -9,3 +9,13 @@ exports.registration = (request, response, next) => {
     // console.log(errors);
     next();
 }
+
+exports.login = (request, response, next) => {
+
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+        return response.status(422).json({ success: false, message: errors.array()});
+    }
+    // console.log(errors);
+    next();
+}

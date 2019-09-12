@@ -23,6 +23,30 @@ class UserService {
         });
     }
 
+    comparePassword(result, hashedPassword) {
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(hashedPassword, result.password, (err, match) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    if (match) {
+                        const response = {
+                            _id: result._id,
+                            username: result.username
+                        }
+                        console.log(`match: ${response}`)
+                        return resolve(response)
+                    } else {
+                        console.log(`fail: ${match}`);
+                        return reject('Invalid Username or Password');
+                    }
+                }
+    
+    
+            });
+        });
+    }
+
     async saveUser(request, hashedPassword) {
         const user = new UserModel({
             fullname: request.body.fullname,
