@@ -7,6 +7,7 @@ const router = express.Router();
 const productController = new ProductController();
 
 
+router.get("/", productController.getProducts);
 router.get("/getproducts", productController.getProducts);
 router.get("/getproductbyid/:id", productController.getProductById);
 router.get("/getproductbyuserid/:user_id", productController.getProductByUserId);
